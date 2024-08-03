@@ -1,0 +1,20 @@
+public class CameraSystem extends AbstractCameraSystem {
+
+    @Override
+    public void startCapture(Consumer<Image> success, Consumer<String> failure) {
+        new Thread(() -> simulateCapture(success, failure)).start();
+    }
+
+    private void capture(Consumer<Image> success, Consumer<String> failure) {
+        try {
+            Thread.sleep(1000);
+            if (Math.random() > 0.5) {
+                success.accept(new Image("captured image successfully"));
+            } else {
+                failure.accept("capture got failed");
+            }
+        } catch (Exception e) {
+            failure.accept("capture error, Please try again");
+        }
+    }
+}
