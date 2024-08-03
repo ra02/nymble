@@ -27,3 +27,4 @@ Let's suppose two different client submit capture request with different urgency
 System B will process both request in order of priority and send to system C. System C will handle the actual image capture asynchronously and invoke the proper callback based on the results. 
 
 Diagram of the flow: 
+Use case diagram has been attached:  usecase_diagram.drawio.png
