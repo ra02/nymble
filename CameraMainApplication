@@ -1,0 +1,24 @@
+public class CameraMainApplication {
+    public static void main(String[] args) {
+        AbstractCameraSystem cameraSystem = new CameraSystem();
+        RequestManagementSystem manager = new RequestManagementSystem(cameraSystem);
+
+        Consumer<Image> successCallback = image -> System.out.println(image.getData());
+        Consumer<String> failureCallback = error -> System.out.println("Capture failed: " + error);
+
+        manager.submitCaptureRequest(10, successCallback, failureCallback);
+        manager.submitCaptureRequest(5, successCallback, failureCallback);
+    }
+}
+
+class Image {
+    private String data;
+
+    public Image(String data) {
+        this.data = data;
+    }
+
+    public String getData() {
+        return data;
+    }
+}
