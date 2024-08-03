@@ -3,11 +3,11 @@ public class CameraMainApplication {
         AbstractCameraSystem cameraSystem = new CameraSystem();
         RequestManagementSystem manager = new RequestManagementSystem(cameraSystem);
 
-        Consumer<Image> successCallback = image -> System.out.println(image.getData());
-        Consumer<String> failureCallback = error -> System.out.println("Capture failed: " + error);
+        Consumer<Image> success = image -> System.out.println(image.getData());
+        Consumer<String> failure = error -> System.out.println("Capture failed: " + error);
 
-        manager.submitCaptureRequest(10, successCallback, failureCallback);
-        manager.submitCaptureRequest(5, successCallback, failureCallback);
+        manager.submitCaptureRequest(10, success, failure);
+        manager.submitCaptureRequest(5, success, failure);
     }
 }
 
