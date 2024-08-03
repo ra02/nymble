@@ -1,0 +1,33 @@
+public class CaptureRequestManager {
+    private AbstractCameraSystem cameraSystem;
+    private PriorityBlockingQueue<ImageCaptureRequest> requestQueue;
+    private ReentrantLock lock;
+
+    public CaptureRequestManager(AbstractCameraSystem cameraSystem) {
+        this.cameraSystem = cameraSystem;
+        this.requestQueue = new PriorityBlockingQueue<>();
+        this.lock = new ReentrantLock();
+    }
+
+    public void submitCaptureRequest(int urgency, Consumer<Image> successCallback, Consumer<String> failureCallback) {
+        ImageCaptureRequest request = new ImageCaptureRequest(urgency, successCallback, failureCallback);
+        requestQueue.put(request);
+        processRequests();
+    }
+
+
+    private void processRequests() {
+        lock.lock();
+        try {
+            while (!requestQueue.isEmpty()) {
+                ImageCaptureRequest request = requestQueue.poll();
+                if (request != null) {
+                    cameraSystem.startCapture(request.getSuccessCallback(), request.getFailureCallback());
+                }
+            }
+        } finally {
+            lock.unlock();
+        }
+
+    }
+}
