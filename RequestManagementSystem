@@ -1,6 +1,8 @@
 public class RequestManagementSystem {
     private AbstractCameraSystem cameraSystem;
     private PriorityBlockingQueue<ImageCaptureRequestSystem> requestQueue;
+
+// we can easily fetch this locak dependency from java library, so not mentioning this class
     private ReentrantLock lock;
 
     public RequestManagementSystem(AbstractCameraSystem cameraSystem) {
