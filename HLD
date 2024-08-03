@@ -1,0 +1,29 @@
+HLD Document:
+
+Overview: System should manage concurrent images capture requests frm different clients. Each request is processes based on it;s priority. Meaning higher priority reequest one will be served before lower one. 
+
+Component of this system:
+1. Camera System
+2. Image capture Request System
+2. Request management System
+
+Responsibilities:
+A. Image Capture Request System: 
+          > Will have the details of a capture request, including priorty level based on urgency and the associated success and failure callbacks.
+          > Impleement Data structure for comparison methods to follow priority queue management and will represent individual capture requests with priority levels.
+          >  We can add multiple features here like security or validation request f=of client etc..
+
+B. Request Management System: 
+          > Will manage incoming capture request using a priority queue. 
+          > Will ensure thread-safe access to the request queue by implmenting lock system. 
+
+C. Camera System: 
+          > This will defines the contract for the camera-system. And will serve as an abstraction layer such that main system logic remains decoupled from specific implementation of camera. 
+          > Will have method to start image capture based on success and failure callbacks.  
+
+Logical Flow:
+
+Let's suppose two different client submit capture request with different urgency levels. First, each request will be encapsulated in system A object and will be added to the priority queue in the system B. 
+System B will process both request in order of priority and send to system C. System C will handle the actual image capture asynchronously and invoke the proper callback based on the results. 
+
+Diagram of the flow: 
