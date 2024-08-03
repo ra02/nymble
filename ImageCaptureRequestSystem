@@ -1,0 +1,28 @@
+public class ImageCaptureRequest implements Comparable<ImageCaptureRequest> {
+    private int urgency;
+    private Consumer<Image> success;
+    private Consumer<String> failure;
+
+    public ImageCaptureRequest(int urgency, Consumer<Image> success, Consumer<String> failure) {
+        this.urgency = urgency;
+        this.success = success;
+        this.failure = failure;
+    }
+
+    public int getUrgency() {
+        return urgency;
+    }
+
+    public Consumer<Image> getSuccess() {
+        return success;
+    }
+
+    public Consumer<String> getFailure() {
+        return failure;
+    }
+
+    @Override
+    public int compareTo(ImageCaptureRequest other) {
+        return Integer.compare(other.urgency, this.urgency);
+    }
+}
