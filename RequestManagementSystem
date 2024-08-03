@@ -1,9 +1,9 @@
-public class CaptureRequestManager {
+public class RequestManagementSystem {
     private AbstractCameraSystem cameraSystem;
     private PriorityBlockingQueue<ImageCaptureRequest> requestQueue;
     private ReentrantLock lock;
 
-    public CaptureRequestManager(AbstractCameraSystem cameraSystem) {
+    public RequestManagementSystem(AbstractCameraSystem cameraSystem) {
         this.cameraSystem = cameraSystem;
         this.requestQueue = new PriorityBlockingQueue<>();
         this.lock = new ReentrantLock();
