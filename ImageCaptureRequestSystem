@@ -1,9 +1,9 @@
-public class ImageCaptureRequest implements Comparable<ImageCaptureRequest> {
+public class ImageCaptureRequestSystem implements Comparable<ImageCaptureRequestSystem> {
     private int urgency;
     private Consumer<Image> success;
     private Consumer<String> failure;
 
-    public ImageCaptureRequest(int urgency, Consumer<Image> success, Consumer<String> failure) {
+    public ImageCaptureRequestSystem(int urgency, Consumer<Image> success, Consumer<String> failure) {
         this.urgency = urgency;
         this.success = success;
         this.failure = failure;
@@ -22,7 +22,7 @@ public class ImageCaptureRequest implements Comparable<ImageCaptureRequest> {
     }
 
     @Override
-    public int compareTo(ImageCaptureRequest other) {
+    public int compareTo(ImageCaptureRequestSystem other) {
         return Integer.compare(other.urgency, this.urgency);
     }
 }
