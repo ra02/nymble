@@ -1,0 +1,3 @@
+public abstract class CameraSystem {
+  public abstract void startCapture(Consumer<Image> success, Consumer<String> failureCallback);
+}
